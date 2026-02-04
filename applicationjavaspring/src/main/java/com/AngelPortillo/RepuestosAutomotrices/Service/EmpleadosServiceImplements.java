@@ -27,7 +27,7 @@ public class EmpleadosServiceImplements implements EmpleadosService{
 
     @Override
     public Empleados saveEmpleado(Empleados empleados) throws RuntimeException {
-        return null;
+        return empleadosRepository.save(empleados);
     }
 
     @Override

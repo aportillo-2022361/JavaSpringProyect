@@ -2,11 +2,10 @@ package com.AngelPortillo.RepuestosAutomotrices.Controller;
 
 import com.AngelPortillo.RepuestosAutomotrices.Model.Empleados;
 import com.AngelPortillo.RepuestosAutomotrices.Service.EmpleadosService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +19,21 @@ public class EmpleadoController {
     public List<Empleados> getAllEmpleados(){return empleadosService.getAllEmpleados();}
 
     @PostMapping
-    public ResponseEntity<Object> createEmpleado(Empleados empleados) {
-        return null;
+    public ResponseEntity<Object> createEmpleado(@Valid @RequestBody Empleados empleados) {
+        try {
+            Empleados createdEmpleado = empleadosService.saveEmpleado(empleados);
+            return new ResponseEntity<>(createdEmpleado, HttpStatus.CREATED);
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEmpleado(@PathVariable Integer id) {
+        try {
+            Empleados deleteEmpleado = empleadosService.deleteEmpleado(id);
+            return ResponseEntity.ok("Cliente eliminado correctament;e");
+        }catch () {
+        }
     }
 }
