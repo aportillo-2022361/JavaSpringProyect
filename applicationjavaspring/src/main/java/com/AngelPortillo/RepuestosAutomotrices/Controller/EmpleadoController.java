@@ -27,13 +27,4 @@ public class EmpleadoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmpleado(@PathVariable Integer id) {
-        try {
-            Empleados deleteEmpleado = empleadosService.deleteEmpleado(id);
-            return ResponseEntity.ok("Cliente eliminado correctament;e");
-        }catch () {
-        }
-    }
 }
