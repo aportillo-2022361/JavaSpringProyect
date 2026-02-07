@@ -31,7 +31,14 @@ public class EmpleadosServiceImplements implements EmpleadosService{
 
     @Override
     public Empleados updateEmpleado(Integer id, Empleados empleados) {
-        return null;
+        Empleados existingEmpleado = empleadosRepository.findById(id).orElseThrow(() -> new RuntimeException("El empleado no existe"));
+
+        existingEmpleado.setNombreEmpleado(empleados.getNombreEmpleado());
+        existingEmpleado.setApellidoEmpleado(empleados.getApellidoEmpleado());
+        existingEmpleado.setPuestoEmpleado(empleados.getPuestoEmpleado());
+        existingEmpleado.setEmailEmpleado(empleados.getEmailEmpleado());
+
+        return empleadosRepository.save(existingEmpleado);
     }
 
     @Override

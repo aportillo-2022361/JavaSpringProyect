@@ -27,4 +27,28 @@ public class EmpleadoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEmpleado(@PathVariable Integer id){
+        try {
+            empleadosService.deleteEmpleado(id);
+            return ResponseEntity.ok("Empleado Eliminado Correctamente");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEmpleado(@PathVariable Integer id, @RequestBody Empleados empleados) {
+
+        try {
+            Empleados actualizado = empleadosService.updateEmpleado(id, empleados);
+            return ResponseEntity.ok(actualizado);
+
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
+    }
 }
