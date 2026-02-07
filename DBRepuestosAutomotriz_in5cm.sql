@@ -174,24 +174,137 @@ BEGIN
 END$$
 DELIMITER ;
 
--- CALL sp_AgregarRepuestos('Pastillas de Freno', 'Frenos', 15.50, 25.00, 6);
--- CALL sp_AgregarRepuestos('Filtro de Aceite', 'Motor', 5.00, 12.00, 8);
--- CALL sp_AgregarRepuestos('Batería 12V', 'Eléctrico', 45.00, 85.00, 7);
--- CALL sp_AgregarRepuestos('Amortiguador Delantero', 'Suspensión', 30.00, 55.00, 1);
--- CALL sp_AgregarRepuestos('Bujía Iridium', 'Motor', 4.00, 9.50, 3);
--- CALL sp_AgregarRepuestos('Kit de Embrague', 'Transmisión', 120.00, 210.00, 2);
--- CALL sp_AgregarRepuestos('Faro Halógeno', 'Iluminación', 25.00, 48.00, 10);
--- CALL sp_AgregarRepuestos('Radiador', 'Refrigeración', 60.00, 110.00, 5);
--- CALL sp_AgregarRepuestos('Correa de Distribución', 'Motor', 18.00, 35.00, 3);
--- CALL sp_AgregarRepuestos('Espejo Lateral', 'Carrocería', 22.00, 42.00, 9);
+-- CREATE - REPUESTOS --
+DELIMITER $$
+CREATE PROCEDURE sp_AgregarRepuestos(
+ 	IN p_nombre_repuesto VARCHAR(60),
+ 	IN p_categoria_repuesto VARCHAR(60),
+ 	IN p_precio_compra DOUBLE,
+ 	IN p_precio_venta DOUBLE,
+ 	IN p_id_proveedor INT
+)
+BEGIN
+	INSERT INTO Repuestos(nombre_repuesto, categoria_repuesto, precio_compra, precio_venta, id_proveedor)
+	VALUES (p_nombre_repuesto, p_categoria_repuesto, p_precio_compra, p_precio_venta, p_id_proveedor);
+END$$
+DELIMITER ;
 
--- CALL sp_AgregarVentas('2024-05-01', 2, 50.00, 1, 1);
--- CALL sp_AgregarVentas('2024-05-01', 1, 12.00, 3, 2);
--- CALL sp_AgregarVentas('2024-05-02', 1, 85.00, 5, 3);
--- CALL sp_AgregarVentas('2024-05-02', 2, 110.00, 6, 4);
--- CALL sp_AgregarVentas('2024-05-03', 4, 38.00, 9, 5);
--- CALL sp_AgregarVentas('2024-05-03', 1, 210.00, 1, 6);
--- CALL sp_AgregarVentas('2024-05-04', 2, 96.00, 10, 7);
--- CALL sp_AgregarVentas('2024-05-04', 1, 110.00, 5, 8);
--- CALL sp_AgregarVentas('2024-05-05', 1, 35.00, 3, 9);
--- CALL sp_AgregarVentas('2024-05-05', 2, 84.00, 6, 10);
+CALL sp_AgregarRepuestos('Pastillas de Freno', 'Frenos', 15.50, 25.00, 6);
+CALL sp_AgregarRepuestos('Filtro de Aceite', 'Motor', 5.00, 12.00, 8);
+CALL sp_AgregarRepuestos('Batería 12V', 'Eléctrico', 45.00, 85.00, 7);
+CALL sp_AgregarRepuestos('Amortiguador Delantero', 'Suspensión', 30.00, 55.00, 1);
+CALL sp_AgregarRepuestos('Bujía Iridium', 'Motor', 4.00, 9.50, 3);
+CALL sp_AgregarRepuestos('Kit de Embrague', 'Transmisión', 120.00, 210.00, 2);
+CALL sp_AgregarRepuestos('Faro Halógeno', 'Iluminación', 25.00, 48.00, 10);
+CALL sp_AgregarRepuestos('Radiador', 'Refrigeración', 60.00, 110.00, 5);
+CALL sp_AgregarRepuestos('Correa de Distribución', 'Motor', 18.00, 35.00, 3);
+CALL sp_AgregarRepuestos('Espejo Lateral', 'Carrocería', 22.00, 42.00, 9);
+SELECT * FROM Repuestos;
+
+-- READ - REPUESTOS --
+DELIMITER $$
+CREATE PROCEDURE sp_LeerRepuestos(
+)
+BEGIN
+	SELECT * FROM Repuestos;
+END$$
+DELIMITER ;
+
+-- UPDATE - REPUESTOS --
+DELIMITER $$
+CREATE PROCEDURE sp_ModificarRepuestos(
+	IN p_id_repuesto INT,
+ 	IN p_nombre_repuesto VARCHAR(60),
+ 	IN p_categoria_repuesto VARCHAR(60),
+ 	IN p_precio_compra DOUBLE,
+ 	IN p_precio_venta DOUBLE,
+ 	IN p_id_proveedor INT
+)
+BEGIN
+	UPDATE Repuestos SET 
+	nombre_repuesto = p_nombre_repuesto,
+	categoria_repuesto = p_categoria_repuesto,
+	precio_compra = p_precio_compra,
+	precio_venta = p_precio_venta,
+	id_proveedor = p_id_proveedor
+	WHERE id_repuesto = p_id_repuesto;
+END$$
+DELIMITER ;
+
+-- DELETE - REPUESTOS --
+DELIMITER $$
+CREATE PROCEDURE sp_EliminarRepuestos(
+	IN p_id_repuesto INT
+)
+BEGIN
+	DELETE FROM Repuestos WHERE id_repuesto = p_id_repuesto;
+END$$
+DELIMITER ;
+
+
+-- CREATE - VENTAS --
+DELIMITER $$
+CREATE PROCEDURE sp_AgregarVentas(
+ 	IN p_fecha_venta DATE,
+ 	IN p_cantidad INT,
+ 	IN p_total DOUBLE,
+	IN p_id_empleado INT,
+ 	IN p_id_repuesto INT
+)
+BEGIN
+	INSERT INTO Ventas(fecha_venta, cantidad, total, id_empleado, id_repuesto)
+	VALUES (p_fecha_venta, p_cantidad, p_total, p_id_empleado, p_id_repuesto);
+END$$
+DELIMITER ;
+
+CALL sp_AgregarVentas('2024-05-01', 2, 50.00, 1, 1);
+CALL sp_AgregarVentas('2024-05-01', 1, 12.00, 3, 2);
+CALL sp_AgregarVentas('2024-05-02', 1, 85.00, 5, 3);
+CALL sp_AgregarVentas('2024-05-02', 2, 110.00, 6, 4);
+CALL sp_AgregarVentas('2024-05-03', 4, 38.00, 9, 5);
+CALL sp_AgregarVentas('2024-05-03', 1, 210.00, 1, 6);
+CALL sp_AgregarVentas('2024-05-04', 2, 96.00, 10, 7);
+CALL sp_AgregarVentas('2024-05-04', 1, 110.00, 5, 8);
+CALL sp_AgregarVentas('2024-05-05', 1, 35.00, 3, 9);
+CALL sp_AgregarVentas('2024-05-05', 2, 84.00, 6, 10);
+SELECT * FROM Ventas;
+
+-- READ - VENTAS --
+DELIMITER $$
+CREATE PROCEDURE sp_LeerVentas(
+)
+BEGIN
+	SELECT * FROM Ventas;
+END$$
+DELIMITER ;
+
+-- UPDATE - VENTAS --
+DELIMITER $$
+CREATE PROCEDURE sp_ModificarVentas(
+	IN p_id_venta INT,
+ 	IN p_fecha_venta DATE,
+ 	IN p_cantidad INT,
+ 	IN p_total DOUBLE,
+	IN p_id_empleado INT,
+ 	IN p_id_repuesto INT
+)
+BEGIN
+	UPDATE Ventas SET 
+	fecha_venta = p_fecha_venta,
+	cantidad = p_cantidad,
+	total = p_total,
+	id_empleado = p_id_empleado,
+	id_repuesto = p_id_repuesto
+	WHERE id_venta = p_id_venta;
+END$$
+DELIMITER ;
+
+-- DELETE - VENTAS --
+DELIMITER $$
+CREATE PROCEDURE sp_EliminarVentas(
+	IN p_id_venta INT
+)
+BEGIN
+	DELETE FROM Ventas WHERE id_venta = p_id_venta;
+END$$
+DELIMITER ;
