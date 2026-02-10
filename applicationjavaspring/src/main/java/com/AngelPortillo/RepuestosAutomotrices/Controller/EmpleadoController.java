@@ -1,6 +1,6 @@
 package com.AngelPortillo.RepuestosAutomotrices.Controller;
 
-import com.AngelPortillo.RepuestosAutomotrices.Model.Empleados;
+import com.AngelPortillo.RepuestosAutomotrices.Entity.Empleados;
 import com.AngelPortillo.RepuestosAutomotrices.Service.EmpleadosService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
