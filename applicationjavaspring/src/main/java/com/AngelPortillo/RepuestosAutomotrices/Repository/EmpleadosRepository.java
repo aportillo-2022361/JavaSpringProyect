@@ -1,6 +1,6 @@
 package com.AngelPortillo.RepuestosAutomotrices.Repository;
 
-import com.AngelPortillo.RepuestosAutomotrices.Model.Empleados;
+import com.AngelPortillo.RepuestosAutomotrices.Entity.Empleados;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

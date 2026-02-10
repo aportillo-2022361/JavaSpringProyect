@@ -1,6 +1,6 @@
 package com.AngelPortillo.RepuestosAutomotrices.Service;
 
-import com.AngelPortillo.RepuestosAutomotrices.Model.Empleados;
+import com.AngelPortillo.RepuestosAutomotrices.Entity.Empleados;
 import com.AngelPortillo.RepuestosAutomotrices.Repository.EmpleadosRepository;
 import org.springframework.stereotype.Service;
 
