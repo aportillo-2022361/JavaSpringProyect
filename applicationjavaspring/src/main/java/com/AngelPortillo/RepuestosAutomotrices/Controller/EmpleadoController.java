@@ -13,10 +13,14 @@ import java.util.List;
 @RequestMapping("/api/empleados")
 public class EmpleadoController {
     private final EmpleadosService empleadosService;
-    public EmpleadoController(EmpleadosService empleadosService) {this.empleadosService = empleadosService;}
+    public EmpleadoController(EmpleadosService empleadosService) {
+        this.empleadosService = empleadosService;
+    }
 
     @GetMapping
-    public List<Empleados> getAllEmpleados(){return empleadosService.getAllEmpleados();}
+    public List<Empleados> getAllEmpleados(){
+        return empleadosService.getAllEmpleados();
+    }
 
     @PostMapping
     public ResponseEntity<Object> createEmpleado(@Valid @RequestBody Empleados empleados) {
