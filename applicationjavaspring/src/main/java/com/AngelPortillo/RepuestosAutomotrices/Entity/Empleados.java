@@ -1,4 +1,4 @@
-package com.AngelPortillo.RepuestosAutomotrices.Model;
+package com.AngelPortillo.RepuestosAutomotrices.Entity;
 
 import jakarta.persistence.*;
 
