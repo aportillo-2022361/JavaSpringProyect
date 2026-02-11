@@ -1,6 +1,7 @@
 package com.AngelPortillo.RepuestosAutomotrices.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -9,21 +10,27 @@ import java.util.Date;
 public class Ventas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(message = "El ID de la ")
     @Column(name = "id_venta")
     private Integer idVenta;
 
+    @NotNull(message = "La fecha debe estar indicada")
     @Column(name = "fecha_venta")
     private Date fechaVenta;
 
+    @NotNull(message = "El precio/cantidad de la venta tiene que estar indicado")
     @Column(name = "cantidad")
     private Integer cantidad;
 
+    @NotNull(message = "El total de la venta debe ir indicado")
     @Column(name = "total")
     private Double total;
 
+    @NotNull(message = "El ID del empleado debe ir indicado")
     @Column(name = "id_empleado")
     private Integer idEmpleado;
 
+    @NotNull(message = "El ID del repuesto debe ir indicado")
     @Column(name = "id_repuesto")
     private Integer idRepuesto;
 
