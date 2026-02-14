@@ -60,18 +60,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL sp_AgregarProveedores('Autopartes Global', 5551010, 'Calle 10 #45-12',   'ventas@autoglobal.com');
-CALL sp_AgregarProveedores('Repuestos El Rayo', 5552020, 'Av. Central 789',   'contacto@elrayo.com');
-CALL sp_AgregarProveedores('TecnoMotores'     , 5553030, 'Carrera 50 #12-30', 'info@tecnomotores.com');
-CALL sp_AgregarProveedores('Distribuidora Norte', 5554040, 'Calle Norte 45', 'norte_dist@mail.com');
-CALL sp_AgregarProveedores('Importadora Oriental', 5555050, 'Zona Industrial 4', 'import_oriental@parts.com');
-CALL sp_AgregarProveedores('Frenos y Más', 5556060, 'Transversal 8 #99', 'frenosymas@servicio.com');
-CALL sp_AgregarProveedores('Baterías Premium', 5557070, 'Av. Principal 101', 'ventas@batpremium.com');
-CALL sp_AgregarProveedores('Lubricantes Pro', 5558080, 'Calle 22 #5-10', 'admin@lubripro.com');
-CALL sp_AgregarProveedores('Carrocería Express', 5559090, 'Sector Sur Bloque 2', 'express@carroceria.com');
-CALL sp_AgregarProveedores('Electrónicos Auto', 5550000, 'Calle de la Tecnología 3', 'e-auto@parts.com');
-SELECT * FROM Proveedores;
-
 -- READ - PROVEEDORES --
 DELIMITER $$
 CREATE PROCEDURE sp_LeerProveedores(
@@ -123,18 +111,6 @@ BEGIN
 	VALUES (p_nombre_empleado, p_apellido_empleado, p_puesto_empleado, p_email_empleado);
 END$$
 DELIMITER ;
-
-CALL sp_AgregarEmpleados('Juan', 'Pérez', 'Vendedor', 'juan.perez@taller.com');
-CALL sp_AgregarEmpleados('María', 'García', 'Cajera', 'maria.garcia@taller.com');
-CALL sp_AgregarEmpleados('Carlos', 'López', 'Vendedor', 'carlos.lopez@taller.com');
-CALL sp_AgregarEmpleados('Ana', 'Martínez', 'Gerente', 'ana.mtz@taller.com');
-CALL sp_AgregarEmpleados('Luis', 'Rodríguez', 'Vendedor', 'luis.rod@taller.com');
-CALL sp_AgregarEmpleados('Elena', 'Sánchez', 'Vendedor', 'elena.s@taller.com');
-CALL sp_AgregarEmpleados('Pedro', 'Gómez', 'Almacenista', 'pedro.g@taller.com');
-CALL sp_AgregarEmpleados('Lucía', 'Díaz', 'Cajera', 'lucia.diaz@taller.com');
-CALL sp_AgregarEmpleados('Roberto', 'Ruiz', 'Vendedor', 'roberto.r@taller.com');
-CALL sp_AgregarEmpleados('Sofía', 'Castro', 'Vendedor', 'sofia.c@taller.com');
-SELECT * FROM Empleados;
 
 -- READ - EMPLEADOS --
 DELIMITER $$
@@ -188,18 +164,6 @@ BEGIN
 	VALUES (p_nombre_repuesto, p_categoria_repuesto, p_precio_compra, p_precio_venta, p_id_proveedor);
 END$$
 DELIMITER ;
-
-CALL sp_AgregarRepuestos('Pastillas de Freno', 'Frenos', 15.50, 25.00, 6);
-CALL sp_AgregarRepuestos('Filtro de Aceite', 'Motor', 5.00, 12.00, 8);
-CALL sp_AgregarRepuestos('Batería 12V', 'Eléctrico', 45.00, 85.00, 7);
-CALL sp_AgregarRepuestos('Amortiguador Delantero', 'Suspensión', 30.00, 55.00, 1);
-CALL sp_AgregarRepuestos('Bujía Iridium', 'Motor', 4.00, 9.50, 3);
-CALL sp_AgregarRepuestos('Kit de Embrague', 'Transmisión', 120.00, 210.00, 2);
-CALL sp_AgregarRepuestos('Faro Halógeno', 'Iluminación', 25.00, 48.00, 10);
-CALL sp_AgregarRepuestos('Radiador', 'Refrigeración', 60.00, 110.00, 5);
-CALL sp_AgregarRepuestos('Correa de Distribución', 'Motor', 18.00, 35.00, 3);
-CALL sp_AgregarRepuestos('Espejo Lateral', 'Carrocería', 22.00, 42.00, 9);
-SELECT * FROM Repuestos;
 
 -- READ - REPUESTOS --
 DELIMITER $$
@@ -257,18 +221,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL sp_AgregarVentas('2024-05-01', 2, 50.00, 1, 1);
-CALL sp_AgregarVentas('2024-05-01', 1, 12.00, 3, 2);
-CALL sp_AgregarVentas('2024-05-02', 1, 85.00, 5, 3);
-CALL sp_AgregarVentas('2024-05-02', 2, 110.00, 6, 4);
-CALL sp_AgregarVentas('2024-05-03', 4, 38.00, 9, 5);
-CALL sp_AgregarVentas('2024-05-03', 1, 210.00, 1, 6);
-CALL sp_AgregarVentas('2024-05-04', 2, 96.00, 10, 7);
-CALL sp_AgregarVentas('2024-05-04', 1, 110.00, 5, 8);
-CALL sp_AgregarVentas('2024-05-05', 1, 35.00, 3, 9);
-CALL sp_AgregarVentas('2024-05-05', 2, 84.00, 6, 10);
-SELECT * FROM Ventas;
-
 -- READ - VENTAS --
 DELIMITER $$
 CREATE PROCEDURE sp_LeerVentas(
@@ -308,3 +260,52 @@ BEGIN
 	DELETE FROM Ventas WHERE id_venta = p_id_venta;
 END$$
 DELIMITER ;
+
+CALL sp_AgregarProveedores('Autopartes Global', 5551010, 'Calle 10 #45-12',   'ventas@autoglobal.com');
+CALL sp_AgregarProveedores('Repuestos El Rayo', 5552020, 'Av. Central 789',   'contacto@elrayo.com');
+CALL sp_AgregarProveedores('TecnoMotores'     , 5553030, 'Carrera 50 #12-30', 'info@tecnomotores.com');
+CALL sp_AgregarProveedores('Distribuidora Norte', 5554040, 'Calle Norte 45', 'norte_dist@mail.com');
+CALL sp_AgregarProveedores('Importadora Oriental', 5555050, 'Zona Industrial 4', 'import_oriental@parts.com');
+CALL sp_AgregarProveedores('Frenos y Más', 5556060, 'Transversal 8 #99', 'frenosymas@servicio.com');
+CALL sp_AgregarProveedores('Baterías Premium', 5557070, 'Av. Principal 101', 'ventas@batpremium.com');
+CALL sp_AgregarProveedores('Lubricantes Pro', 5558080, 'Calle 22 #5-10', 'admin@lubripro.com');
+CALL sp_AgregarProveedores('Carrocería Express', 5559090, 'Sector Sur Bloque 2', 'express@carroceria.com');
+CALL sp_AgregarProveedores('Electrónicos Auto', 5550000, 'Calle de la Tecnología 3', 'e-auto@parts.com');
+
+CALL sp_AgregarEmpleados('Juan', 'Pérez', 'Vendedor', 'juan.perez@taller.com');
+CALL sp_AgregarEmpleados('María', 'García', 'Cajera', 'maria.garcia@taller.com');
+CALL sp_AgregarEmpleados('Carlos', 'López', 'Vendedor', 'carlos.lopez@taller.com');
+CALL sp_AgregarEmpleados('Ana', 'Martínez', 'Gerente', 'ana.mtz@taller.com');
+CALL sp_AgregarEmpleados('Luis', 'Rodríguez', 'Vendedor', 'luis.rod@taller.com');
+CALL sp_AgregarEmpleados('Elena', 'Sánchez', 'Vendedor', 'elena.s@taller.com');
+CALL sp_AgregarEmpleados('Pedro', 'Gómez', 'Almacenista', 'pedro.g@taller.com');
+CALL sp_AgregarEmpleados('Lucía', 'Díaz', 'Cajera', 'lucia.diaz@taller.com');
+CALL sp_AgregarEmpleados('Roberto', 'Ruiz', 'Vendedor', 'roberto.r@taller.com');
+CALL sp_AgregarEmpleados('Sofía', 'Castro', 'Vendedor', 'sofia.c@taller.com');
+
+CALL sp_AgregarRepuestos('Pastillas de Freno', 'Frenos', 15.50, 25.00, 6);
+CALL sp_AgregarRepuestos('Filtro de Aceite', 'Motor', 5.00, 12.00, 8);
+CALL sp_AgregarRepuestos('Batería 12V', 'Eléctrico', 45.00, 85.00, 7);
+CALL sp_AgregarRepuestos('Amortiguador Delantero', 'Suspensión', 30.00, 55.00, 1);
+CALL sp_AgregarRepuestos('Bujía Iridium', 'Motor', 4.00, 9.50, 3);
+CALL sp_AgregarRepuestos('Kit de Embrague', 'Transmisión', 120.00, 210.00, 2);
+CALL sp_AgregarRepuestos('Faro Halógeno', 'Iluminación', 25.00, 48.00, 10);
+CALL sp_AgregarRepuestos('Radiador', 'Refrigeración', 60.00, 110.00, 5);
+CALL sp_AgregarRepuestos('Correa de Distribución', 'Motor', 18.00, 35.00, 3);
+CALL sp_AgregarRepuestos('Espejo Lateral', 'Carrocería', 22.00, 42.00, 9);
+
+CALL sp_AgregarVentas('2024-05-01', 2, 50.00, 1, 1);
+CALL sp_AgregarVentas('2024-05-01', 1, 12.00, 3, 2);
+CALL sp_AgregarVentas('2024-05-02', 1, 85.00, 5, 3);
+CALL sp_AgregarVentas('2024-05-02', 2, 110.00, 6, 4);
+CALL sp_AgregarVentas('2024-05-03', 4, 38.00, 9, 5);
+CALL sp_AgregarVentas('2024-05-03', 1, 210.00, 1, 6);
+CALL sp_AgregarVentas('2024-05-04', 2, 96.00, 10, 7);
+CALL sp_AgregarVentas('2024-05-04', 1, 110.00, 5, 8);
+CALL sp_AgregarVentas('2024-05-05', 1, 35.00, 3, 9);
+CALL sp_AgregarVentas('2024-05-05', 2, 84.00, 6, 10);
+
+SELECT * FROM Proveedores;
+SELECT * FROM Empleados;
+SELECT * FROM Repuestos;
+SELECT * FROM Ventas;
