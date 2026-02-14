@@ -35,7 +35,6 @@ public class EmpleadosServiceImplements implements EmpleadosService{
             throw new BadRequestException("Campos Vacios, Por favor rellenar todos los campos");
         return empleadosRepository.save(empleados);
     }
-    
     @Override
     public Empleados updateEmpleado(Integer id, Empleados empleados) {
         Empleados existingEmpleado = empleadosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("El empleado con ID " + id + " no existe"));
