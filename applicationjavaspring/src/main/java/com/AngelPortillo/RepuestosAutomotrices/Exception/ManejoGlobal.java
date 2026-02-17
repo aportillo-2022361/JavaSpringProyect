@@ -1,7 +1,4 @@
 package com.AngelPortillo.RepuestosAutomotrices.Exception;
-
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,7 +19,7 @@ public class ManejoGlobal {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<?> handleResourceNotFoundException(BadRequestException ex, WebRequest request) {
-        return crearRespuesta(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+        return crearRespuesta(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 
     private ResponseEntity<?> crearRespuesta(String mensaje, WebRequest request, HttpStatus status) {
