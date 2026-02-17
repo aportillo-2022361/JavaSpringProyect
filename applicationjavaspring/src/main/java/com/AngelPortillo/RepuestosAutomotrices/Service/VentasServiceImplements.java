@@ -1,17 +1,13 @@
 package com.AngelPortillo.RepuestosAutomotrices.Service;
 
 import com.AngelPortillo.RepuestosAutomotrices.Entity.Ventas;
-import com.AngelPortillo.RepuestosAutomotrices.Exception.BadRequestException;
 import com.AngelPortillo.RepuestosAutomotrices.Repository.VentasRepository;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
-public class VentasServiceImplements implements VentasService{
+public class VentasServiceImplements implements VentasService {
     private final VentasRepository ventasRepository;
 
     public VentasServiceImplements(VentasRepository ventasRepository) {
@@ -25,17 +21,12 @@ public class VentasServiceImplements implements VentasService{
 
     @Override
     public Ventas saveVentas(Ventas ventas) {
-        if (ventas.getCantidad() == null
-        ||  ventas.getFechaVenta() == null
-        ||  ventas.getIdRepuesto() == null
-        ||  ventas.getTotal() == null)
-            throw new BadRequestException("Campos Vacios, Por favor rellenar todos los campos");
         return ventasRepository.save(ventas);
     }
 
     @Override
     public Ventas updateVentas(Integer id, Ventas ventas) {
-        Ventas existingVentas = ventasRepository.findById(id).orElseThrow(() ->  new RuntimeException("El empleado con ID " + id + " no existe"));
+        Ventas existingVentas = ventasRepository.findById(id).orElseThrow(() -> new RuntimeException("El empleado con ID " + id + " no existe"));
 
         existingVentas.setFechaVenta(ventas.getFechaVenta());
         existingVentas.setCantidad(ventas.getCantidad());
@@ -48,7 +39,7 @@ public class VentasServiceImplements implements VentasService{
 
     @Override
     public void deleteVentas(Integer id) {
-        ventasRepository.findById(id).orElseThrow(() ->  new RuntimeException("El empleado con ID " + id + " no existe"));
+        ventasRepository.findById(id).orElseThrow(() -> new RuntimeException("El empleado con ID " + id + " no existe"));
         ventasRepository.deleteById(id);
     }
 }

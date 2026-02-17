@@ -1,7 +1,7 @@
 package com.AngelPortillo.RepuestosAutomotrices.Service;
 
 import com.AngelPortillo.RepuestosAutomotrices.Entity.Proveedores;
-import com.AngelPortillo.RepuestosAutomotrices.Exception.BadRequestException;
+import com.AngelPortillo.RepuestosAutomotrices.Exception.MethodArgumentNotValidException;
 import com.AngelPortillo.RepuestosAutomotrices.Exception.ResourceNotFoundException;
 import com.AngelPortillo.RepuestosAutomotrices.Repository.ProveedoresRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class ProveedoresServiceImplements implements ProveedoresService{
         ||  proveedores.getEmailProveedor() == null    || proveedores.getEmailProveedor().trim().isEmpty()
         ||  proveedores.getDireccion() == null         || proveedores.getDireccion().trim().isEmpty()
         ||  proveedores.getTelefonoProveedor() == null)
-            throw new BadRequestException("Campos Vacios, Por favor rellenar todos los campos");
+            throw new MethodArgumentNotValidException("Campos Vacios, Por favor rellenar todos los campos");
         return proveedoresRepository.save(proveedores);
     }
 

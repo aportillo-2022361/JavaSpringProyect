@@ -1,7 +1,6 @@
 package com.AngelPortillo.RepuestosAutomotrices.Service;
 
 import com.AngelPortillo.RepuestosAutomotrices.Entity.Repuestos;
-import com.AngelPortillo.RepuestosAutomotrices.Exception.BadRequestException;
 import com.AngelPortillo.RepuestosAutomotrices.Exception.ResourceNotFoundException;
 import com.AngelPortillo.RepuestosAutomotrices.Repository.RepuestosRepository;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,6 @@ public class RepuestosServiceImplements implements RepuestosService{
 
     @Override
     public Repuestos saveRepuestos(Repuestos repuestos) {
-        if (repuestos.getCategoriaRepuesto() == null || repuestos.getCategoriaRepuesto().trim().isEmpty()
-        ||  repuestos.getNombreRepuesto() == null    || repuestos.getNombreRepuesto().trim().isBlank()
-        ||  repuestos.getIdProveedor() == null
-        ||  repuestos.getPrecioCompra() == null
-        ||  repuestos.getPrecioVenta() == null)
-            throw new BadRequestException("Campos Vacios, Por favor rellenar todos los campos");
         return repuestosRepository.save(repuestos);
     }
 

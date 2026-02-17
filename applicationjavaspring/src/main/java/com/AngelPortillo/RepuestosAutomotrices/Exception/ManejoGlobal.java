@@ -1,6 +1,7 @@
 package com.AngelPortillo.RepuestosAutomotrices.Exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -17,8 +18,13 @@ public class ManejoGlobal {
         return crearRespuesta(ex.getMessage(), request, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(BadRequestException ex, WebRequest request) {
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleResourceNotFoundException(HttpMessageNotReadableException ex, WebRequest request) {
+        return crearRespuesta(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleResourceNotFoundException(MethodArgumentNotValidException ex, WebRequest request) {
         return crearRespuesta(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 

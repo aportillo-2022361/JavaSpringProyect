@@ -1,7 +1,7 @@
 package com.AngelPortillo.RepuestosAutomotrices.Service;
 
 import com.AngelPortillo.RepuestosAutomotrices.Entity.Empleados;
-import com.AngelPortillo.RepuestosAutomotrices.Exception.BadRequestException;
+import com.AngelPortillo.RepuestosAutomotrices.Exception.MethodArgumentNotValidException;
 import com.AngelPortillo.RepuestosAutomotrices.Exception.ResourceNotFoundException;
 import com.AngelPortillo.RepuestosAutomotrices.Repository.EmpleadosRepository;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class EmpleadosServiceImplements implements EmpleadosService{
                 || empleados.getApellidoEmpleado() == null || empleados.getApellidoEmpleado().trim().isEmpty()
                 || empleados.getEmailEmpleado() == null    || empleados.getEmailEmpleado().trim().isEmpty()
                 || empleados.getPuestoEmpleado() == null   || empleados.getPuestoEmpleado().trim().isEmpty())
-            throw new BadRequestException("Campos Vacios, Por favor rellenar todos los campos");
+            throw new MethodArgumentNotValidException("Campos Vacios, Por favor rellenar todos los campos");
         return empleadosRepository.save(empleados);
     }
     @Override

@@ -2,6 +2,7 @@ package com.AngelPortillo.RepuestosAutomotrices.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -13,18 +14,26 @@ public class Ventas {
     @Column(name = "id_venta")
     private Integer idVenta;
 
+    @NotNull(message = "La fecha tiene que ir especificada")
     @Column(name = "fecha_venta")
     private Date fechaVenta;
 
+    @NotNull(message = "La cantidad debe ir especificada")
+    @Positive(message = "La cantidad debe ser positiva")
     @Column(name = "cantidad")
     private Integer cantidad;
 
+    @NotNull(message = "El total debe ir especificado")
     @Column(name = "total")
     private Double total;
 
+    @NotNull(message = "El id del empleado debe ir especificado")
+    @Positive(message = "El id del empleado debe ser positivo")
     @Column(name = "id_empleado")
     private Integer idEmpleado;
 
+    @NotNull(message = "El id del repuesto debe ir especificado")
+    @Positive(message = "El id del repuesto debe ir positivo")
     @Column(name = "id_repuesto")
     private Integer idRepuesto;
 
